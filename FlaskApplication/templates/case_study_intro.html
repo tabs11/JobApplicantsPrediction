@@ -1,0 +1,95 @@
+{% extends "login_layout.html" %}
+{% block content %}
+
+<div class="multi_upload_index">
+  <h2 class="section-header">Dataset Overview</h2>
+  <p class="lead">
+    The dataset titled "Employability Classification of Over 70,000 Job Applicants" contains a comprehensive collection of information regarding job applicants and their respective employability scores.
+  </p>
+  <p>
+    This dataset has been compiled to assist organizations and recruiters in evaluating the suitability of candidates for various employment opportunities. By utilizing machine learning techniques, it aims to:
+  </p>
+  <ul>
+    <li>Provide valuable insights into factors influencing employability</li>
+    <li>Enhance the efficiency of the hiring process</li>
+  </ul>
+
+  <h2 class="section-header">Goal</h2>
+  <p class="lead">
+    The aim of this study is to conduct a deeper analysis on this dataset regarding job applicants. The goal is to predict employability based on applicants' characteristics/skills present in the feature <span class="highlight">HaveWorkedWith</span> (e.g., 'C++;Python;Git;PostgreSQL').
+  </p>
+  
+  <h3>Workflow:</h3>
+  <ol>
+    <li>
+      <strong>Data transformations:</strong>
+      <ul>
+        <li>TF-IDF vectorization for text data conversion</li>
+        <li>Features Selection</li>
+        <li>Model Selection</li>
+        <li>Model Tuning</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Model performance analysis:</strong>
+      <ul>
+        <li>Features Importance</li>
+        <li>Learning curve</li>
+        <li>Confusion Matrices</li>
+        <li>Precision-Recall Curve</li>
+        <li>ROC curve</li>
+      </ul>
+    </li>
+  </ol>
+  
+  <p>For more details, check the Jupyter notebook available on GitHub.</p>
+
+  <p>&nbsp;</p>
+  <table>
+  <tr>
+  <form class="button" align="right" method="GET" action="/raw_data" enctype="multipart/form-data">
+  <input class="mybutton" type="submit" value="CHECK RAW DATA"  class="span2">
+  </form>
+  </tr>
+  </table>
+  <p>&nbsp;</p>
+</div>
+
+<style>
+.multi_upload_index {
+  font-family: Arial, sans-serif;
+  color: #333;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.section-header {
+  color: black;
+  background-color: #cccccc;
+  padding: 10px;
+  margin-top: 30px;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.lead {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.highlight {
+  color: #336699;
+  font-weight: bold;
+}
+
+ul, ol {
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 10px;
+}
+</style>
+{% endblock %}
