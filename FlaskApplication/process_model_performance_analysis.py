@@ -182,9 +182,12 @@ def model_performance_analysis():
     with open('./templates/model_performance_analysis.html',"r",encoding='utf-8') as inf:
         txt = inf.read()
         soup = bs4.BeautifulSoup(txt,features="lxml")
-    toreplace='{% extends "login_layout.html" %}\n{% block content %}\n</form>\n<p>&nbsp;</p>\n<div class="multi_upload_index">\n<h2 style="color:black;background-color:#cccccc" class="text-muted"><b><font size="5">MODEL PERFORMANCE ANALYSIS:</font></b></h2>\n'
+    toreplace='{% extends "login_layout.html" %}\n{% block content %}\n</form>\n<p>&nbsp;</p>\n<div class="multi_upload_index">\n<h2 style="color:black;background-color:#cccccc" class="text-muted"><b><font size="5">MODEL PERFORMANCE ANALYSIS:</font></b></h2>\n<p>&nbsp;</p><table><tr>\n<form class="button" align="right" method="GET" action="/new_entries" enctype="multipart/form-data">\n<input class="mybutton" type="submit" value="NEW PREDICTION"  class="span2"></td>\n</form>\n</tr>\n</table>'
 
     example=str(soup).replace('<html>\n<head><meta charset="utf-8"/></head>\n',toreplace).replace('</html>','{% endblock %}')
     text_file = open("./templates/model_performance_analysis.html", "wt",encoding='utf-8')
     n = text_file.write(example)
     text_file.close()   
+
+
+

@@ -30,7 +30,7 @@ def run_data_transformations():
     fig = make_subplots(
         rows=3, cols=1,
         specs=[[{"type": "table"}], [{"type": "table"}],[{"type": "table"}]],
-        vertical_spacing=0.2,  # Increase this value to add more space between plots
+        vertical_spacing=0.1,  # Increase this value to add more space between plots
         subplot_titles=("TF-IDF features sample (Only 6 out of 115 features shown)", "Model and Features Selection Results", 'Model Tuning')
     )
     
@@ -54,7 +54,7 @@ def run_data_transformations():
     
     # Update layout
     fig.update_layout(
-        height=1400,  # Increase height to accommodate larger titles and spacing
+        height=1200,  # Increase height to accommodate larger titles and spacing
         width=1300,
         title_text="",
         showlegend=False,

@@ -27,7 +27,7 @@ def upload_file():
         soup = bs4.BeautifulSoup(txt,features="lxml")
 
 
-    toreplace='{% extends "login_layout.html" %}\n{% block content %}\n<p>&nbsp;</p>\n<div class="multi_upload_index">\n<h2 style="color:black;background-color:#cccccc" class="text-muted"><b><font size="5">Introduction:</font></b></h2>\n<p>&nbsp;</p>\n<table>\n<tr>\n<form class="button" align="right" method="GET" action="/features_transforming" enctype="multipart/form-data">\n<input class="mybutton" type="submit" value="APPLY FEATURES TRANSFORMATION"  class="span2"></td>\n</form>\n</tr>\n</table>\n<p>&nbsp;</p>\n<table>\n<tr>\n'
+    toreplace='{% extends "login_layout.html" %}\n{% block content %}\n<p>&nbsp;</p>\n<div class="multi_upload_index">\n<h2 style="color:black;background-color:#cccccc" class="text-muted"><b><font size="5">Original Data:</font></b></h2>\n<p>&nbsp;</p>\n<table>\n<tr>\n<form class="button" align="right" method="GET" action="/features_transforming" enctype="multipart/form-data">\n<input class="mybutton" type="submit" value="APPLY FEATURES TRANSFORMATION"  class="span2"></td>\n</form>\n</tr>\n</table>\n<p>&nbsp;</p>\n<table>\n<tr>\n'
 
 
     example=str(soup).replace('<html>\n<head><meta charset="utf-8"/></head>\n',toreplace).replace('</html>','{% endblock %}')   

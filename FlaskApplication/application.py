@@ -52,31 +52,31 @@ def running_transformations():
     return render_template('features_transforming.html')
 
 
-#@application.route("/model_performance_analysis" , methods=['GET', 'POST'])
-#def  running_plots():
-#    process_model_performance_analysis.model_performance_analysis()
-#    return render_template('model_performance_analysis.html')
-
-
-@application.route("/model_performance_analysis", methods=['GET', 'POST'])
-def running_plots():
+@application.route("/model_performance_analysis" , methods=['GET', 'POST'])
+def  running_plots():
     process_model_performance_analysis.model_performance_analysis()
-    
-    #if request.method == 'POST':
-    #    store_data = request.form.get('store_data') == 'on'
-#
-    #    if store_data:
-    #        additional_data = request.form.get('additional_data', '')
-    #        data_to_store = {'skills': additional_data}
-#
-    #        with open('./data/newEntries.pkl', 'wb') as f:
-    #            pickle.dump(data_to_store, f)
-#
-    #        flash('Data stored successfully!')  # Pass a message to flash()
-    #    else:
-    #        flash('Data not stored.') #Or other message
-    #process_run_new_entries.new_skills()
     return render_template('model_performance_analysis.html')
+
+
+@application.route("/new_entries", methods=['GET', 'POST'])
+def new_entry():
+    result = None
+    if request.method == 'POST':
+        additional_data = request.form.get('additional_data', '')
+        if additional_data:
+            data_to_store = {'skills': additional_data}
+
+            with open('./data/newEntries.pkl', 'wb') as f:
+                pickle.dump(data_to_store, f)
+
+            flash('Data stored and prediction made successfully!')
+            
+            # Run the prediction and get the result
+            result = process_run_new_entries.new_skills()
+        else:
+            flash('Please enter skills data.')
+    
+    return render_template('model_prediction_new_entry.html', result=result)
 
 
 
