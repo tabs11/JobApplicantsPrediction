@@ -1,0 +1,35 @@
+{% extends "login_layout.html" %}
+{% block content %}
+<p>&nbsp;</p>
+<div class="multi_upload_index">
+    <h2 style="color:black;background-color:#cccccc" class="text-muted"><b><font size="5">New Prediction:</font></b></h2>
+    
+    <!-- Flash messages -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-info">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <!-- Form for new entries -->
+    <form method="POST" action="{{ url_for('new_entry') }}">
+        <div class="form-group">
+            <label for="additional_data">Enter Skills:</label>
+            <textarea id="additional_data" name="additional_data" class="form-control" rows="4"></textarea>
+        </div>
+        
+        <button type="submit" class="mybutton">Submit</button>
+    </form>
+
+    <div id="prediction-results">
+        {% if result %}
+            {{ result | safe }}
+        {% endif %}
+    </div>
+
+
+
+</div>
+{% endblock %}
