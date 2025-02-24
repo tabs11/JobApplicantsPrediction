@@ -1,0 +1,21 @@
+Employed,HaveWorkedWith
+1,javascript;typescript;react.js;node.js;express;mongodb;docker;aws;git;nginx;redis
+0,python;django;flask;postgresql;sql;kubernetes;docker;aws;bash/shell;ansible
+1,java;spring;oracle;elasticsearch;kafka;terraform;google cloud platform;vmware;kubernetes;ansible
+0,c++;c;unreal engine;sqlite;git;assembly;cmake;postgresql;docker
+1,php;laravel;mysql;vue.js;nginx;digitalocean;jquery;html/css;symfony;wordpress
+0,go;postgresql;docker;kubernetes;aws;redis;mongodb;mysql;oracle
+1,ruby;ruby on rails;postgresql;redis;heroku;ansible;docker;git;aws;nginx
+0,c#;asp.net core;microsoft sql server;microsoft azure;blazor;xamarin;unity 3d;.net;docker
+1,kotlin;android;firebase;sqlite;postgresql;java;spring;aws;docker
+0,swift;ios;firebase;sqlite;postgresql;aws;docker;ansible;terraform
+1,typescript;angular;node.js;mongodb;docker;google cloud platform;express;react.js;aws
+0,scala;play framework;akka;cassandra;spark;postgresql;docker;kubernetes;aws
+1,rust;postgresql;docker;aws;terraform;git;bash/shell;kubernetes;nginx
+0,elixir;phoenix;postgresql;redis;docker;digitalocean;aws;kubernetes;ansible
+1,clojure;react.js;aws;docker;postgresql;redis;nginx;kubernetes;terraform
+0,haskell;postgresql;redis;nginx;digitalocean;docker;aws;kubernetes;ansible
+1,dart;firebase;sqlite;git;aws;docker;kubernetes;postgresql;redis
+0,objective-c;ios;sqlite;postgresql;aws;docker;kubernetes;terraform;ansible
+1,groovy;postgresql;elasticsearch;jenkins;aws;docker;kubernetes;ansible;terraform
+0,perl;mysql;redis;nginx;linode;postgresql;docker;kubernetes;aws
