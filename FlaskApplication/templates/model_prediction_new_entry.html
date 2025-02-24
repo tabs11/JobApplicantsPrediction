@@ -13,14 +13,24 @@
         {% endif %}
     {% endwith %}
 
-    <!-- Form for new entries -->
+    <!-- Form for single entry -->
     <form method="POST" action="{{ url_for('new_entry') }}">
         <div class="form-group">
             <label for="additional_data">Enter Skills:</label>
             <textarea id="additional_data" name="additional_data" class="form-control" rows="4"></textarea>
         </div>
-        
-        <button type="submit" class="mybutton">Submit</button>
+        <button type="submit" name="submit_type" value="single" class="mybutton">Submit Single Entry</button>
+    </form>
+
+    <hr>
+
+    <!-- Form for file upload -->
+    <form method="POST" action="{{ url_for('new_entry') }}" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="file">Upload CSV File:</label>
+            <input type="file" id="file" name="file" accept=".csv">
+        </div>
+        <button type="submit" name="submit_type" value="file" class="mybutton">Submit File</button>
     </form>
 
     <div id="prediction-results">
@@ -28,8 +38,7 @@
             {{ result | safe }}
         {% endif %}
     </div>
-
-
-
 </div>
 {% endblock %}
+
+
