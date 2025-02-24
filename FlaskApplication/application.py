@@ -1,19 +1,10 @@
 #!/usr/bin/env python
-from lib import *
 from flask import Flask, request, redirect, url_for, render_template, send_from_directory,send_file,flash,session
 from flask_session import Session  # https://pythonhosted.org/Flask-Session
 from werkzeug.utils import secure_filename
 import requests
-import msal
 import app_config
-from openpyxl import load_workbook
-import openpyxl
-from openpyxl import Workbook
-from openpyxl.styles import Color, PatternFill, Font, Border
-from openpyxl.styles import colors
-from openpyxl.cell import Cell
-from zipfile import ZipFile
-
+import os
 #%load_ext autoreload
 #%autoreload 2
 import auxiliar_functions
@@ -28,6 +19,8 @@ application.config.from_object(app_config)
 Session(application)
 
 application.config['ALLOWED_EXTENSIONS'] = set(['xlsx','xls','csv'])
+
+
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -58,27 +51,71 @@ def  running_plots():
     return render_template('model_performance_analysis.html')
 
 
+#@application.route("/new_entries", methods=['GET', 'POST'])
+#def new_entry():
+#    result = None
+#    if request.method == 'POST':
+#        additional_data = request.form.get('additional_data', '')
+#        if additional_data:
+#            data_to_store = {'skills': additional_data}
+#
+#            with open('./data/newEntries.pkl', 'wb') as f:
+#                pickle.dump(data_to_store, f)
+#
+#            flash('Data stored and prediction made successfully!')
+#            
+#            # Run the prediction and get the result
+#            result = process_run_new_entries.new_skills()
+#        else:
+#            flash('Please enter skills data.')
+#    
+#    return render_template('model_prediction_new_entry.html', result=result)
+
 @application.route("/new_entries", methods=['GET', 'POST'])
 def new_entry():
     result = None
     if request.method == 'POST':
-        additional_data = request.form.get('additional_data', '')
-        if additional_data:
-            data_to_store = {'skills': additional_data}
-
-            with open('./data/newEntries.pkl', 'wb') as f:
-                pickle.dump(data_to_store, f)
-
-            flash('Data stored and prediction made successfully!')
-            
-            # Run the prediction and get the result
-            result = process_run_new_entries.new_skills()
+        submit_type = request.form.get('submit_type')
+        
+        if submit_type == 'file':
+            if 'file' in request.files:
+                file = request.files['file']
+                if file and file.filename.endswith('.csv'):
+                    filename = secure_filename(file.filename)
+                    file_path = os.path.join('./data', filename)
+                    file.save(file_path)
+                    
+                    # Read CSV file
+                    df = pd.read_csv(file_path)
+                    data_to_store = {'skills': df['HaveWorkedWith'].tolist()}
+                    
+                    with open('./data/newEntries.pkl', 'wb') as f:
+                        pickle.dump(data_to_store, f)
+                    
+                    flash('File uploaded and data stored successfully!')
+                    result = process_run_new_entries.new_skills()
+                else:
+                    flash('Please upload a valid CSV file.')
+            else:
+                flash('No file uploaded.')
+        
+        elif submit_type == 'single':
+            additional_data = request.form.get('additional_data', '')
+            if additional_data:
+                data_to_store = {'skills': additional_data}
+                
+                with open('./data/newEntries.pkl', 'wb') as f:
+                    pickle.dump(data_to_store, f)
+                
+                flash('Data stored and prediction made successfully!')
+                result = process_run_new_entries.new_skills()
+            else:
+                flash('Please enter skills data.')
+        
         else:
-            flash('Please enter skills data.')
+            flash('Invalid submission type.')
     
     return render_template('model_prediction_new_entry.html', result=result)
-
-
 
 import random, threading, webbrowser
 
